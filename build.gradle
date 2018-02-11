@@ -1,0 +1,98 @@
+group 'org.learn.end2end'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+
+println("Hello world")
+
+class TestJavaClass{
+    static void sayHello(String...args){
+        System.out.println("Hello Work java ")
+    }
+}
+TestJavaClass.sayHello()
+System.out.println("Sysout outside")
+
+def intValue = 10
+def floatVal = 6.48
+println("Summing values $intValue")
+println("Summing values ${intValue.class}")
+println("Summing values ${intValue+floatVal}")
+floatVal = "hello usha"
+println("Summing values ${intValue+floatVal}")
+
+println "\n"
+
+def doubleInt(n){
+    return n + n
+}
+def fooFun = 10
+println(" doubleInt(foo) = ${doubleInt(fooFun)} ")
+fooFun = "UshaPoocha"
+println(" doubleInt(foo) = ${doubleInt(fooFun)} ")
+println "\n"
+
+//can have no paranthesi without un ambiguity
+
+
+//closure inline functions
+def foo = "one million dollars"
+def myCourse = {
+    println "Hello from closure"
+    println "Value for foo is $foo"
+}
+println "\n"
+
+def bar = myCourse
+def baz = bar
+baz()
+println "\n"
+
+//Closure 2
+def doubleInt = { x -> x + x}
+
+def twicefunction(func , arg){
+    func(func(arg))
+}
+println "\n"
+//Higher order functions
+def foo2=5
+def callDoubleFunc =  twicefunction(doubleInt, foo2)
+println "Applying doucble twice ${callDoubleFunc}"
+println "\n"
+
+//lists in Groovy
+def myList = ["Gradle","Groovy", "Android"]
+def printItem = {item -> println "Printing each item  $item"}
+myList.each(printItem)
+println "\n"
+
+//Compact mode
+myList.each {println "Compactly printing each list item: $it"}
+
+println "\n"
+
+//Groovy classes
+class GroovyTestClass{
+    String memberVar = "1111111111"
+    def printMemberVar(){println "pritning member variable $memberVar"}
+
+}
+
+def groovyTestClass = new GroovyTestClass()
+groovyTestClass.printMemberVar()
+groovyTestClass.memberVar = "000000000"
+groovyTestClass.printMemberVar()
