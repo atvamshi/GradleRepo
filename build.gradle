@@ -96,3 +96,26 @@ def groovyTestClass = new GroovyTestClass()
 groovyTestClass.printMemberVar()
 groovyTestClass.memberVar = "000000000"
 groovyTestClass.printMemberVar()
+
+println "\n"
+
+//setting delegates
+//to access class values llike inheretance
+def groovyTestClassClosure = {
+    memberVar = "000000000dsbhewfij999"
+    printMemberVar()
+}
+
+//groovyTestClassClosure()  //willl throw in an error
+groovyTestClassClosure.delegate = groovyTestClass
+groovyTestClassClosure()
+
+//Entire build script delegates to a project object
+// Domain Specific language DSL
+println "\n"
+
+project.task("mytask1")
+project.task "mytask2"
+project.task mytask2
+
+println "\n"
